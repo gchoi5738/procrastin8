@@ -13,12 +13,14 @@ import { Container } from "@mui/system";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/system";
 import TimerIcon from '@mui/icons-material/Timer';
+import Countdown from "./Timer";
 import styles from "../styles/VideoPageStyle";
+
 
 function VideoPage() {
   /* Styling */
   const classes = styles()
-  /*Handle firebase auth states */
+  /* Handle firebase auth states */
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   /* Handle Video feed */
@@ -27,6 +29,8 @@ function VideoPage() {
   const [videoIndex, setVideoIndex] = useState(-1)
   /* Navigate hook */
   const navigate = useNavigate();
+  /* Countdown */
+  const [displayTimer, setDisplayTimer] = useState(false)
   const handleTags = (event) => {
     setTag(event.target.value)
   }
@@ -36,6 +40,11 @@ function VideoPage() {
     console.log(data.data)
     setEmbedIdList(data.data)
     setVideoIndex(0)
+
+    setDisplayTimer(true)
+  }
+  const countdownEnded = () => {
+    setDisplayTimer(false)
   }
   const handleVideoIndex = () => {
     setVideoIndex(videoIndex + 1)
@@ -65,18 +74,20 @@ function VideoPage() {
             </Typography>
           </Box>
           <Box sx={classes.boxTimer}>
-            <TimerIcon></TimerIcon>
+            <TimerIcon sx={classes.timer}></TimerIcon>
+            {displayTimer ? <Countdown sx={classes.countdown} countdownEnded={countdownEnded}/> : <h1> Free to procrastin8!</h1>}
           </Box>
         </Container>
         <Container sx={classes.formAndVideo}>
           <form onSubmit={submitTags} style={classes.tagForm}>
-            <TextField variant="filled" sx={classes.tagForm.tags} label="Search for some tags!" type="search" onChange={ handleTags }/>
+            <TextField variant="filled" sx={classes.tagForm.tags} label="Search for some tags!" type="search" onChange={ handleTags } InputLabelProps={{ style : { color : "white" }}}/>
             <Button sx={classes.tagForm.procrastin8btn} type="submit" variant="contained" color="error">PROCRASTIN8</Button>
           </form>
           <VideoContainer sx={classes.videoContainer} embedIdList={embedIdList} index={videoIndex}></VideoContainer>
           <Button sx={classes.nextButton} onClick={handleVideoIndex} variant="contained" color="success">NEXT</Button>
         </Container>
       </main>
+
     </div>
   );
 }

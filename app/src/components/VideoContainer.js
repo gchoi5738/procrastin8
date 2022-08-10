@@ -1,7 +1,9 @@
 import React from "react";
 
 function VideoContainer ({embedIdList, index}) {
-    if (index === -1) {
+    const embedId = embedIdList[index]
+    console.log(embedId)
+    if (index === -1 || !embedId) {
         return (
             <div className="video-responsive">
             <iframe
@@ -11,8 +13,7 @@ function VideoContainer ({embedIdList, index}) {
             </div>
         )
     }
-    const embedId = embedIdList[index]
-    console.log(embedId)
+    
     return (
         <div className="video-responsive">
             <iframe

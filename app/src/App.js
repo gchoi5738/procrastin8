@@ -9,7 +9,7 @@ import VideoPage from "./components/VideoPage";
 
 function App() {
   return (
-    <div className='app' style={{backgroundColor: "#343a40"}}>
+    <div className='app'>
       <Router>
         <Routes>
             <Route exact path="/" element={<Login />} />

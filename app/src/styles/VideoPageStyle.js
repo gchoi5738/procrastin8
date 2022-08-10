@@ -28,7 +28,9 @@ const styles = () => ({
     tagForm: {
       tags: {
         height: "50px",
-        width: "870px"
+        width: "870px",
+        input: {color:"white"}
+
     },
       procrastin8btn: {
         height:"55px"
@@ -39,13 +41,12 @@ const styles = () => ({
 
     },
     nextButton: {
-
+      marginBottom:"5em"
     },
     mainPage: {
         flexGrow: "1",
     },
     formAndVideo:{
-        border:"2px solid red",
         display:"flex",
         flexDirection:"column",
         justifyContent:"center",
@@ -53,21 +54,22 @@ const styles = () => ({
     },
     description:{
       paragraph:"true",
-      color:"blue",
+      color:"purple",
       fontSize:"1em"
     },
     boxDescription: {
       flexDirection:"row",
-      width: '35%',
-      height: '25vh',
+      width: "500px",
+      height: "135px",
       border: '2px solid red',
+      padding:"10px",
       backgroundColor: 'lightgray'
     },
     descriptionTimerContainer: {
       display:"flex",
       justifyContent:"space-between",
       marginTop:"2em",
-      border:"2px solid red"
+      marginBottom: "2em"
     }, 
     boxTimer: {
       flexDirection:"row",
@@ -75,7 +77,16 @@ const styles = () => ({
       height: "135px",
       border: '2px solid red',
       backgroundColor: 'lightgray',
-      padding:"10px"
+      padding:"10px",
+      display:"flex",
+      justifyContent:"space-evenly",
+      alignItems: "center"
+    },
+    countdown:{
+      flexDirection:"row"
+    },
+    timer : {
+      fontSize:'80px'
     }
   });
 
