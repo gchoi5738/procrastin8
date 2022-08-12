@@ -14,7 +14,8 @@ query,
 getDocs,
 collection,
 where,
-addDoc,
+setDoc,
+doc
 }from "firebase/firestore";
 
 
@@ -38,16 +39,19 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
-    console.log(user)
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
+    /*for watch history */
+    var oneDayInTheFuture = new Date(new Date().setDate(new Date().getDate() + 1));
     if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         name: user.displayName,
         authProvider: "google",
         email: user.email,
-      });
+        hist: oneDayInTheFuture,
+        videoIdData: []
+      })
     }
   } catch (err) {
     console.error(err);
@@ -69,12 +73,16 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
-      await addDoc(collection(db, "users"), {
+      /* watch history */
+      var oneDayInTheFuture = new Date(new Date().setDate(new Date().getDate() + 1));
+      await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         name,
         authProvider: "local",
         email,
-      });
+        hist: oneDayInTheFuture,
+        videoIdData: []
+      })
     } catch (err) {
       console.error(err);
       alert(err.message);

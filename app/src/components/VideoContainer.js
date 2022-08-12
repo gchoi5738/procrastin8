@@ -1,8 +1,28 @@
-import React from "react";
-
+import { updateDoc, 
+        arrayUnion, 
+        doc, } 
+from "firebase/firestore";
+import React, {useEffect} from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "./firebase";
 function VideoContainer ({embedIdList, index}) {
+    const [user, loading, error] = useAuthState(auth)
     const embedId = embedIdList[index]
-    console.log(embedId)
+    async function addIDToHistory(docRef) {
+        await updateDoc(docRef, {
+        videoIdData: arrayUnion(embedId)
+        })
+    }
+    const getCurrentUserDoc = () => {
+        return doc(db, "users", user.uid)
+    }
+    useEffect(() => {
+        if (!embedId) {
+            return
+        }
+        const docs = getCurrentUserDoc()
+        addIDToHistory(docs)
+    }, )
     if (index === -1 || !embedId) {
         return (
             <div className="video-responsive">
@@ -13,6 +33,8 @@ function VideoContainer ({embedIdList, index}) {
             </div>
         )
     }
+    
+    
     
     return (
         <div className="video-responsive">

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, logout } from "./firebase";
+import { auth, logout, db } from "./firebase";
+import { doc, getDoc } from "firebase/firestore";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -36,12 +37,21 @@ function VideoPage() {
   }
   const submitTags = async(event) => {
     event.preventDefault()
-    const data = await axios.post('http://127.0.0.1:5000', { tags : tag })
-    console.log(data.data)
+    const videoIdHistory = await getVideoIdHistory()
+    console.log(videoIdHistory)
+    /* POST request with tags, videoIdHistory */
+    const url = 'http://127.0.0.1:5000'
+    const data = await axios.post(url, { tags : tag, videoIdHistory : videoIdHistory })
     setEmbedIdList(data.data)
     setVideoIndex(0)
 
     setDisplayTimer(true)
+  }
+  const getVideoIdHistory = async() => {
+    const firebaseValue = await getDoc(doc(db, "users", user.uid))
+    const idHistory = firebaseValue.data()["videoIdData"]
+    console.log(idHistory)
+    return idHistory
   }
   const countdownEnded = () => {
     setDisplayTimer(false)

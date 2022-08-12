@@ -20,7 +20,7 @@ CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/', methods=['POST'])
 def get_urls():
-    tags = request.get_json()['tags']    
+    tags, videoIdHist = request.get_json()['tags'], request.get_json()['videoIdHistory']    
     youtube_req = youtube.search().list(
         part= "snippet",
         maxResults=25,
@@ -43,18 +43,14 @@ def get_urls():
     return json.dumps(video_ids)
 
 
-def makeVideoList(video_ids):
-    url = "https://www.googleapis.com/youtube/v3/videos?id="+"ZeiPFUODS3g"+"&key="+"AIzaSyAoKd3U7aTx59jGybqZDT45N8LrWcx8GlE"+"&part=contentDetails"
+def getDurationOfVideo(video_id):
+    url = "https://www.googleapis.com/youtube/v3/videos?id="+video_id+"&key="+DEVELOPER_KEY+"&part=contentDetails"
     response = urlopen(url).read()
     data = json.loads(response)
     all_data=data['items']
     contentDetails = all_data[0]['contentDetails']
     youtube_duration = contentDetails['duration']
-    print(youtube_duration)
-    toSeconds(youtube_duration)
-
-
-
-def toSeconds(youtube_duration):
     duration = isodate.parse_duration(youtube_duration)
     return (duration.total_seconds())
+
+    
