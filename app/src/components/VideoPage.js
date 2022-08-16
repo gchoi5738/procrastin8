@@ -19,7 +19,7 @@ import styles from "../styles/VideoPageStyle";
 
 
 function VideoPage() {
-  /* Styling */
+  /* Stylings */
   const classes = styles()
   /* Handle firebase auth states */
   const [user, loading] = useAuthState(auth);
