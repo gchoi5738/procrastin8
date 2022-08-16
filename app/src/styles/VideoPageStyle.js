@@ -87,6 +87,17 @@ const styles = () => ({
     },
     timer : {
       fontSize:'80px'
+    },
+    feedContainer: {
+      display: "flex",
+      marginLeft: "75vh",
+      marginBottom: "2vh"
+    },
+    feedLength: {
+      flexDirection: "row",
+      alignItems: "center",
+      fontSize: "30px",
+      color: "white"
     }
   });
 
