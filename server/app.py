@@ -1,4 +1,5 @@
 import json
+import os
 from flask import Flask
 from flask import request
 import requests 
@@ -8,7 +9,7 @@ import urllib
 from urllib.request import urlopen
 import isodate
 import datetime
-import os
+
 
 api_service_name = "youtube"
 api_version = "v3"
