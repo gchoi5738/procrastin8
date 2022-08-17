@@ -8,10 +8,11 @@ import urllib
 from urllib.request import urlopen
 import isodate
 import datetime
+import os
 
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = "AIzaSyAoKd3U7aTx59jGybqZDT45N8LrWcx8GlE"
+DEVELOPER_KEY = os.environ("DEVELOPER_KEY")
 youtube = googleapiclient.discovery.build(
         api_service_name, api_version, developerKey = DEVELOPER_KEY)
 
