@@ -11,7 +11,7 @@ import datetime
 
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = "AIzaSyAoKd3U7aTx59jGybqZDT45N8LrWcx8GlE"
+DEVELOPER_KEY = "AIzaSyBiPYB1CGIO_yppmV9tbCtATVqOh0sgNwU"
 youtube = googleapiclient.discovery.build(
         api_service_name, api_version, developerKey = DEVELOPER_KEY)
 
