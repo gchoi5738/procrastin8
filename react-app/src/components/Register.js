@@ -6,9 +6,14 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "./firebase";
-import "../styles/Register.css";
+import styles from "../styles/RegisterStyle.js";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import {  Box } from "@mui/system";
+import TextField from "@mui/material/TextField";
 
 function Register() {
+  const classes = styles()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -23,42 +28,55 @@ function Register() {
     if (user) navigate("/play");
   }, [user, loading, navigate]);
   return (
-    <div className="register">
-      <div className="register__container">
-        <input
+    <div className="register" style={classes.registerPage}>
+      <Typography fontSize={"50px"} color={"red"} sx={classes.title}>PROCRASTIN8</Typography>
+      <Box sx={classes.boxContainer}>
+        <TextField
           type="text"
           className="register__textBox"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
+          variant="outlined"
+          color="info"
+          sx={classes.name}
         />
-        <input
+        <TextField
           type="text"
           className="register__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
+          variant="outlined"
+          color="info"
+          sx={classes.email}
         />
-        <input
+        <TextField
           type="password"
           className="register__textBox"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          variant="outlined"
+          color="info"
+          sx={classes.password}
         />
-        <button className="register__btn" onClick={register}>
+        <Button className="register__btn" onClick={register}
+          sx={classes.registerEmail} variant="contained"
+        >
           Register
-        </button>
-        <button
+        </Button>
+        <Button
           className="register__btn register__google"
           onClick={signInWithGoogle}
+          sx={classes.registerGoogle} variant="contained"
         >
           Register with Google
-        </button>
-        <div>
-          Already have an account? <Link to="/">Login</Link> now.
-        </div>
-      </div>
+        </Button>
+        <Typography sx={classes.alreadyAcc}>
+          Already have an account? <Link to="/" style={classes.alreadyAcc.loginLink}>LOGIN</Link> now.
+        </Typography>
+      </Box>
     </div>
   );
 }
