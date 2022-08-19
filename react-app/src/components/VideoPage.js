@@ -7,7 +7,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import VideoContainer from "./VideoContainer";
 import axios from "axios";
 import { Container } from "@mui/system";
