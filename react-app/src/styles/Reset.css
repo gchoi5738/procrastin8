@@ -4,6 +4,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #343a40;
+    position:absolute;
+    top:0px;
+    right:0px;  
+    left:0px;
   }
   .reset__container {
     display: flex;
