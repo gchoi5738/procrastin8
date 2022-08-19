@@ -8,7 +8,6 @@
   },
   "scripts": {
     "start": "node index.js",
-    "build": "cd react-app/ && npm install && npm run build",
     "heroku-postbuild": "cd react-app && npm install && npm run build" 
   } 
 }
