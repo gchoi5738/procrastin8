@@ -21,14 +21,14 @@ doc
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    appId: process.env.APP_ID,
-    measurementId: process.env.MEASUREMENT_ID
-  };
+  apiKey: "AIzaSyAoKd3U7aTx59jGybqZDT45N8LrWcx8GlE",
+  authDomain: "procrastin8.firebaseapp.com",
+  projectId: "procrastin8",
+  storageBucket: "procrastin8.appspot.com",
+  messagingSenderId: "375464948142",
+  appId: "1:375464948142:web:801be1655e9b19cd9bd83f",
+  measurementId: "G-CCMCL5K52S"
+};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
