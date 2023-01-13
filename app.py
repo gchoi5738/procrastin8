@@ -20,6 +20,12 @@ youtube = googleapiclient.discovery.build(
 
 app = Flask(__name__)
 CORS(app)
+
+@app.after_request
+def after_request(response: Response) -> Response:
+    response.access_control_allow_origin = "*"
+    return response
+    
 @app.route('/', methods=['POST'])
 @cross_origin()
 def get_urls():
