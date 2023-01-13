@@ -19,9 +19,9 @@ youtube = googleapiclient.discovery.build(
 
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app)
 @app.route('/', methods=['POST'])
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def get_urls():
     tags, video_id_hist = request.get_json()['tags'], request.get_json()['videoIdHistory']    
     tags = tags.split(",")
