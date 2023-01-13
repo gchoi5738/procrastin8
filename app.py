@@ -20,9 +20,8 @@ youtube = googleapiclient.discovery.build(
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-app.config['CORS_ALLOW_HEADERS'] = 'Content-Type'
 @app.route('/', methods=['POST'])
-@cross_origin(origin='https://procrastin8.herokuapp.com/',headers=['Content- Type','Authorization'])
+@cross_origin(supports_credentials=True)
 def get_urls():
     tags, video_id_hist = request.get_json()['tags'], request.get_json()['videoIdHistory']    
     tags = tags.split(",")
@@ -34,7 +33,7 @@ def get_urls():
         tag_section_duration = 0
         while (tag_section_duration < (TIME_LIMIT / len(tags))):
             video_id_search, next_page_token = initiateYoutubeSearch(tag, next_page_token)
-            for video_id in video_id_search:
+            for video_id in video_id_searmch:
                 if video_id in video_id_hist:
                     continue
                 video_duration = getDurationOfVideo(video_id)
