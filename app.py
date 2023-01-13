@@ -20,7 +20,7 @@ youtube = googleapiclient.discovery.build(
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['CORS_ALLOW_HEADERS'] = 'Content-Type'
 @app.route('/', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def get_urls():
