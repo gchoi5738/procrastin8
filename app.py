@@ -22,7 +22,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True)
 app.config['CORS_ALLOW_HEADERS'] = 'Content-Type'
 @app.route('/', methods=['POST'])
-@cross_origin(supports_credentials=True)
+@cross_origin(origin='https://procrastin8.herokuapp.com/',headers=['Content- Type','Authorization'])
 def get_urls():
     tags, video_id_hist = request.get_json()['tags'], request.get_json()['videoIdHistory']    
     tags = tags.split(",")
