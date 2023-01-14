@@ -41,7 +41,7 @@ def get_urls():
         tag_section_duration = 0
         while (tag_section_duration < (TIME_LIMIT / len(tags))):
             video_id_search, next_page_token = initiateYoutubeSearch(tag, next_page_token)
-            for video_id in video_id_searmch:
+            for video_id in video_id_search:
                 if video_id in video_id_hist:
                     continue
                 video_duration = getDurationOfVideo(video_id)
