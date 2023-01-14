@@ -22,10 +22,12 @@ app = Flask(__name__)
 CORS(app)
 
 @app.after_request
-def after_request(response: Response) -> Response:
-    response.access_control_allow_origin = "*"
-    return response
-    
+def after_request(response):
+  response.headers['Access-Control-Allow-Methods']='*'
+  response.headers['Access-Control-Allow-Origin']='*'
+  response.headers['Vary']='Origin'
+  return response
+
 @app.route('/', methods=['POST'])
 @cross_origin()
 def get_urls():
