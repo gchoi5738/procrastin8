@@ -46,6 +46,7 @@ function VideoPage() {
     /* POST request with tags, videoIdHistory */
     const url = 'https://procrastin8.herokuapp.com/'
     const data = await axios.post(url, { tags : tag, videoIdHistory : videoIdHistory })
+    console.log(data)
     setEmbedIdList(data.data["video_ids_res"])
     setDisplayFeed(data.data["time"])
     setVideoIndex(0)
