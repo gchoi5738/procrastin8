@@ -44,7 +44,7 @@ function VideoPage() {
     const videoIdHistory = await getVideoIdHistory()
     console.log(videoIdHistory)
     /* POST request with tags, videoIdHistory */
-    const url = 'https://procrastin8.herokuapp.com/'
+    const url = 'https://procrastin8.fly.dev/'
     console.log('hello')
     const data = await axios.post(url, { tags : tag, videoIdHistory : videoIdHistory })
     console.log(data)
